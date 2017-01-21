@@ -6,8 +6,8 @@
 #define M 5  // #rows of A and B
 #define N 3  // #cols of A
 #define NRHS 2  // #cols of B
-#define LDA 5  // #rows of coefficients
-#define LDB 5  // #cols of coefficients
+#define LDA 5  // 
+#define LDB 5  // 
 
 
 int main (int argc, const char * argv[])
