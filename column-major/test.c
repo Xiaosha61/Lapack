@@ -3,6 +3,13 @@
 #include <stdio.h>
 #include <lapacke.h>
 
+#define M 5  // #rows of A and B
+#define N 3  // #cols of A
+#define NRHS 2  // #cols of B
+#define LDA 5  // #rows of coefficients
+#define LDB 5  // #cols of coefficients
+
+
 int main (int argc, const char * argv[])
 {
    double a[5*3] = {1,2,3,4,5,1,3,5,2,4,1,4,2,5,3};
@@ -10,11 +17,11 @@ int main (int argc, const char * argv[])
    lapack_int info,m,n,lda,ldb,nrhs;
    int i,j;
 
-   m = 5;
-   n = 3;
-   nrhs = 2;
-   lda = 5;
-   ldb = 5;
+   m = M;
+   n = N;
+   nrhs = NRHS;
+   lda = LDA;
+   ldb = LDB;
 
    info = LAPACKE_dgels(LAPACK_COL_MAJOR,'N',m,n,nrhs,a,lda,b,ldb);
 
