@@ -1,6 +1,6 @@
 CC			= gcc
 FC			= gfortran
-CFLAGS		= -c -O3
+CFLAGS		= -c
 CLIB		= /home/xiaosha/lapack-3.7.0/LAPACKE/include/
 FLIB		= /home/xiaosha/lapack-3.7.0/liblapacke.a /home/xiaosha/lapack-3.7.0/liblapack.a /home/xiaosha/lapack-3.7.0/librefblas.a
 SRCFILES	= test.c aux.c
