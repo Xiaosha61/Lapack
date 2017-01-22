@@ -9,28 +9,66 @@
 #define LDA 2  // #rows of coefficients
 #define LDB 1  // #cols of coefficients
 
+
+/* Auxiliary routine: printing a matrix */
+void print_matrix_rowmajor( char* desc, lapack_int m, lapack_int n, double* mat, lapack_int ldm ) {
+        lapack_int i, j;
+        printf( "\n %s\n", desc );
+
+        for( i = 0; i < m; i++ ) {
+                for( j = 0; j < n; j++ ) printf( " %6.2f", mat[i*ldm+j] );
+                printf( "\n" );
+        }
+}
+
+
+/* Auxiliary routine: printing a matrix */
+void print_matrix_colmajor( char* desc, lapack_int m, lapack_int n, double* mat, lapack_int ldm ) {
+        lapack_int i, j;
+        printf( "\n %s\n", desc );
+
+        for( i = 0; i < m; i++ ) {
+                for( j = 0; j < n; j++ ) printf( " %6.2f", mat[i+j*ldm] );
+                printf( "\n" );
+        }
+}
+
+/* Auxiliary routine: printing a vector of integers */
+void print_vector( char* desc, lapack_int n, lapack_int* vec ) {
+        lapack_int j;
+        printf( "\n %s\n", desc );
+        for( j = 0; j < n; j++ ) printf( " %6i", vec[j] );
+        printf( "\n" );
+}
+
+
 int main (int argc, const char * argv[])
 {
    double A[M][N] = {1,1,1,2,1,3};
    double B[M][NRHS] = {1,2,3};
    lapack_int info,m,n,lda,ldb,nrhs;
-   int i,j;
-
+ 
    m = M;
    n = N;
    nrhs = NRHS;
    lda = LDA;
    ldb = LDB;
 
+   /* Print Entry Matrix */
+   print_matrix_rowmajor( "Entry Matrix A", m, n, *A, lda );
+   /* Print Right Rand Side */
+   print_matrix_rowmajor( "Right Hand Side b", n, nrhs, *b, ldb );
+   printf( "\n" );
+
+
+   /* Executable statements */
+   printf( "LAPACKE_dgels (row-major, high-level) Example Program Results\n" );
+   /* Solve least squares problem*/
    info = LAPACKE_dgels(LAPACK_ROW_MAJOR,'N',m,n,nrhs,*A,lda,*B,ldb);
 
-   for(i=0;i<n;i++)
-   {
-      for(j=0;j<nrhs;j++)
-      {
-         printf("%lf ",B[i][j]);
-      }
-      printf("\n");
-   }
-   return(info);
-}
+   /* Print Solution */
+   print_matrix_rowmajor( "Solution", n, nrhs, *b, ldb );
+   printf( "\n" );
+   exit( 0 );
+} /* End of LAPACKE_dgels Example */
+   
