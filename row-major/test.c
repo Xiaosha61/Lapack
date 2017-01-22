@@ -57,7 +57,7 @@ int main (int argc, const char * argv[])
    /* Print Entry Matrix */
    print_matrix_rowmajor( "Entry Matrix A", m, n, *A, lda );
    /* Print Right Rand Side */
-   print_matrix_rowmajor( "Right Hand Side b", n, nrhs, *b, ldb );
+   print_matrix_rowmajor( "Right Hand Side B", n, nrhs, *B, ldb );
    printf( "\n" );
 
 
@@ -67,8 +67,7 @@ int main (int argc, const char * argv[])
    info = LAPACKE_dgels(LAPACK_ROW_MAJOR,'N',m,n,nrhs,*A,lda,*B,ldb);
 
    /* Print Solution */
-   print_matrix_rowmajor( "Solution", n, nrhs, *b, ldb );
+   print_matrix_rowmajor( "Solution", n, nrhs, *B, ldb );
    printf( "\n" );
    exit( 0 );
 } /* End of LAPACKE_dgels Example */
-   
