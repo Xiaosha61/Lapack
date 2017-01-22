@@ -10,3 +10,8 @@
 **/**.pdf
 **/*/*.pdf
 
+# executable binaries
+**/test
+
+# Linked object files
+**/test.o
