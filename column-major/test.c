@@ -1,5 +1,5 @@
 /* Calling DGELS using column-major order */
-
+#include <stdlib.h>
 #include <stdio.h>
 #include <lapacke.h>
 #include "aux.h"  

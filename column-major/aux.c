@@ -1,5 +1,7 @@
-#include <lapacke.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <lapacke.h>
+
 #include "aux.h"
 
 /* Auxiliary routine: printing a matrix */
