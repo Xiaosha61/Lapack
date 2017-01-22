@@ -4,10 +4,10 @@
 #include <lapacke.h>
 
 #define M 3  // #rows of A and B
-#define N 2  // #cols of A
+#define N 3  // #cols of A
 #define NRHS 1  // #cols of B
-#define LDA 2  // #rows of coefficients
-#define LDB 1  // #cols of coefficients
+#define LDA N  // #rows of coefficients
+#define LDB NRHS  // #cols of coefficients
 
 
 /* Auxiliary routine: printing a matrix */
@@ -17,18 +17,6 @@ void print_matrix_rowmajor( char* desc, lapack_int m, lapack_int n, double* mat,
 
         for( i = 0; i < m; i++ ) {
                 for( j = 0; j < n; j++ ) printf( " %6.2f", mat[i*ldm+j] );
-                printf( "\n" );
-        }
-}
-
-
-/* Auxiliary routine: printing a matrix */
-void print_matrix_colmajor( char* desc, lapack_int m, lapack_int n, double* mat, lapack_int ldm ) {
-        lapack_int i, j;
-        printf( "\n %s\n", desc );
-
-        for( i = 0; i < m; i++ ) {
-                for( j = 0; j < n; j++ ) printf( " %6.2f", mat[i+j*ldm] );
                 printf( "\n" );
         }
 }
@@ -44,8 +32,14 @@ void print_vector( char* desc, lapack_int n, lapack_int* vec ) {
 
 int main (int argc, const char * argv[])
 {
-   double A[M][N] = {1,1,1,2,1,3};
-   double B[M][NRHS] = {1,2,3};
+   double A[M][N] = {1,1,1, 
+                     1,2,4, 
+                     1,3,9 };
+
+   double B[M][NRHS] = {1,
+                        2,
+                        3};
+
    lapack_int info,m,n,lda,ldb,nrhs;
  
    m = M;
